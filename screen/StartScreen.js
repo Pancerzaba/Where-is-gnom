@@ -1,13 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, Button } from 'react-native'
-import MyButton from '../MainButtons'
+import MyButton from '../components/MainButtons'
 
 const StartScreen = () => {
     return (
 
         <View>
             <View style={styles.logoContainer}>
-                <Image style={styles.Logo} source={require('../../assets/logov1.png')} />
+                <Image style={styles.Logo} source={require('../assets/logov1.png')} />
             </View>
             <View style={styles.buttons}>
                 <MyButton >Znajdz krasnala</MyButton>

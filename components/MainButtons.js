@@ -22,8 +22,8 @@ const MainButton = props => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#452187',
-    paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
     borderRadius: 25
   },
   buttonContainer:{

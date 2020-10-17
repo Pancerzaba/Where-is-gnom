@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import StartScreen from './components/screen/StartScreen';
+import StartScreen from './screen/StartScreen';
+import SearchScreen from './screen/SearchScreen';
 
 export default function App() {
   return (
+    // <View style={styles.container}>
+    //         <StartScreen/>
+    //     </View>
     <View style={styles.container}>
-            <StartScreen/>
-        </View>
+      <SearchScreen/>
+    </View>
   );
 }
 
@@ -16,8 +20,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
+    // justifyContent: 'center',
+    padding: 10
+
+   
 
   },
 });
