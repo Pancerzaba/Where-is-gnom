@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer:{
     borderRadius: 21,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    margin:5
   },
   buttonText: {
     color: 'white',
