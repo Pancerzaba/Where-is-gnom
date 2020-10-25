@@ -1,8 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import MainButton, { } from '../components/MainButtons'
 
-const GalleryScreen = () => {
+const GalleryScreen = props => {
+    let ButtonComponent =TouchableOpacity;
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Galeria</Text>
@@ -11,8 +12,13 @@ const GalleryScreen = () => {
                 <MainButton>Zebrane</MainButton>
                 <MainButton>Nie Zebrane</MainButton>
             </View>
-            <View style={styles.fotos}>
+            <View style={styles.fotos}
+             >
+                <ButtonComponent  onPress={()=>{
+                props.navigation.navigate({routeName:'Gnom'})
+            }}>
                     <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} />
+                </ButtonComponent> 
                     <Image style={styles.foto} source={require('../assets/orzezwiacz.jpg')} />
                     <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} />
                 </View>

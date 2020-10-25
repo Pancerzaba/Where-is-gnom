@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, Text, Image, View } from 'react-native';
-import MainButtons from '../components/MainButtons'
 import MainButton from '../components/MainButtons';
 import { color } from 'react-native-reanimated';
 

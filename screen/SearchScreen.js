@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, Image, TextInput, View } from 'react-native'
+import { StyleSheet, Text, Image, TextInput, View, TouchableOpacity } from 'react-native'
 import MainButton from '../components/MainButtons'
 
-const SearchScreen = () => {
-
+const SearchScreen = props => {
+    let ButtonComponent =TouchableOpacity;
     const [value, onChangeText] = React.useState('Szukaj krasnala');
     return (
         <View style={styles.container}>
@@ -19,9 +19,12 @@ const SearchScreen = () => {
                 <MainButton>Trasy</MainButton>
                 <MainButton>Kategorie</MainButton>
             </View>
-            <View style={styles.mapContainer}>
-                <Image style={styles.map} source={require('../assets/mapa.png')} />
-            </View>
+            <ButtonComponent style={styles.mapContainer} onPress={()=>{
+                    props.navigation.navigate({routeName:'Gnom'})
+                }}>
+                <Image style={styles.map} source={require('../assets/mapa.png')} 
+               />
+            </ButtonComponent>
         </View>
     )
 }
