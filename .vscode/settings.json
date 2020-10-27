@@ -1,0 +1,4 @@
+{
+    "editor.cursorSurroundingLinesStyle": "all",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

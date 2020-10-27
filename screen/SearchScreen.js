@@ -28,7 +28,13 @@ const SearchScreen = props => {
         </View>
     )
 }
-
+SearchScreen.navigationOptions={
+    headerTitle: ' Szukaj krasnala ',
+    headerStyle: {
+        backgroundColor: '#452187',
+    },
+    headerTintColor: 'white'
+}
 export default SearchScreen;
 
 const styles = StyleSheet.create({
@@ -43,15 +49,20 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         backgroundColor: '#452187',
-        padding: 10,
+        margin: 10,
+        
+        borderRadius:10,
+        borderWidth: 2,
+        borderColor: '#452187',
         textAlign: 'center',
         flexDirection: 'row',
     },
     input: {
         backgroundColor: 'white',
-        width: "60%",
+        width: "80%",
         padding: 10,
-        textAlign: 'center'
+        textAlign: 'center',
+        borderRadius:10,
 
     },
     mapContainer: {

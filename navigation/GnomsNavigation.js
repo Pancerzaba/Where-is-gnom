@@ -9,7 +9,7 @@ import GalleryScreen from '../screen/GalleryScreen';
  
 const GnomsNavigator=createStackNavigator({
     Start: StartScreen,
-    Search: { screen: SearchScreen},
+    Search:  SearchScreen,
     Gallery: GalleryScreen,
     Gnom: GnomScreen
 });

@@ -1,10 +1,16 @@
-import React from 'react'
-import { StyleSheet, Text, Image, View } from 'react-native';
+import React, {useEffect, useState} from 'react'
+import { StyleSheet, Text, Image, View, Alert, Button } from 'react-native';
 import MainButton from '../components/MainButtons';
-import { color } from 'react-native-reanimated';
 
-const GnomScreen = () => {
-    return (
+
+
+const GnomScreen = props => {
+  
+   const[statusGnom, setStatusGnom] = useState('Dodaj')
+    const handleAddGnom={
+        
+    }
+return(
         <View style={styles.container}>
             <Image style={styles.gnom} source={require('../assets/pomagajek.jpg')} />
             <View style={styles.textConteiner}>
@@ -16,13 +22,22 @@ const GnomScreen = () => {
             </Text>
             <View style={styles.buttons}>
                 <MainButton>Naviguj</MainButton>
-                <MainButton>Dodaj</MainButton>
+                <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
+               
+                
             </View></View>
         </View>
     )
 }
 
-export default GnomScreen
+GnomScreen.navigationOptions={
+    headerTitle: 'Krasnal ',
+    headerStyle: {
+        backgroundColor: '#452187',
+    },
+    headerTintColor: 'white'
+}
+export default GnomScreen;
 
 const styles = StyleSheet.create({
     gnom: {

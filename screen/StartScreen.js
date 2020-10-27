@@ -23,7 +23,13 @@ const StartScreen = props => {
         </View>
     )
 }
-
+StartScreen.navigationOptions={
+    headerTitle: ' ',
+    headerStyle: {
+        backgroundColor: '#452187',
+    },
+    headerTintColor: 'white'
+}
 export default StartScreen
 
 const styles = StyleSheet.create({

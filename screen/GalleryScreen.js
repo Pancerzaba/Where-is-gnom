@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
-import MainButton, { } from '../components/MainButtons'
+import MainButton from '../components/MainButtons'
 
 const GalleryScreen = props => {
     let ButtonComponent =TouchableOpacity;
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Galeria</Text>
+            {/* <Text style={styles.title}>Galeria</Text> */}
             <View style={styles.buttons}>
                 <MainButton>Wszystkie</MainButton>
                 <MainButton>Zebrane</MainButton>
@@ -25,7 +25,13 @@ const GalleryScreen = props => {
             </View>
     )
 }
-
+GalleryScreen.navigationOptions={
+    headerTitle: 'Gallery ',
+    headerStyle: {
+        backgroundColor: '#452187',
+    },
+    headerTintColor: 'white'
+}
 export default GalleryScreen
 
 const styles = StyleSheet.create({
