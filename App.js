@@ -4,18 +4,18 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import GnomScreen from './screen/GnomScreen'
 import GnomsNavigator from './navigation/GnomsNavigation';
-import User from './database/User'
+//import User from './database/User'
 
 import database from '@react-native-firebase/database';
 
-const reference = database().ref('/users/123');
+//const reference = database().ref('/users/123');
 
 
 export default function App() {
  
   return (
-    <User/>
-   // <GnomsNavigator/>
+  //  <User/>
+    <GnomsNavigator/>
     
   );
 }

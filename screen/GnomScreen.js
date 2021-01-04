@@ -12,20 +12,20 @@ const GnomScreen = props => {
     }
 return(
         <View style={styles.container}>
-            <Image style={styles.gnom} source={require('../assets/pomagajek.jpg')} />
+            {/* <Image style={styles.gnom} source={require('../assets/pomagajek.jpg')} /> */}
+            <Image style={styles.image} source={{uri: props.image}}/>
             <View style={styles.textConteiner}>
-            <Text style={styles.title}>Pomagajek</Text>
-            <Text style={styles.adres}>Sukiennice 12, Wrocław</Text>
-            <Text>
-                Ten niezwykły krasnal to strażnik wartości, o których w dzisiejszych czasach tak łatwo zapominamy.
-                Jego praca trwa nieustannie przez cały rok a jego misją jest poprawa jakości życia nieuleczalnie chorych dzieci i pomoc w ich leczeniu.
-            </Text>
-            <View style={styles.buttons}>
-                <MainButton>Naviguj</MainButton>
-                <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
-               
-                
-            </View></View>
+                <Text style={styles.title}>Pomagajek</Text>
+                <Text style={styles.adres}>Sukiennice 12, Wrocław</Text>
+                <Text>
+                    Ten niezwykły krasnal to strażnik wartości, o których w dzisiejszych czasach tak łatwo zapominamy.
+                    Jego praca trwa nieustannie przez cały rok a jego misją jest poprawa jakości życia nieuleczalnie chorych dzieci i pomoc w ich leczeniu.
+                </Text>
+                <View style={styles.buttons}>
+                    <MainButton>Naviguj</MainButton>
+                    <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
+                </View>
+            </View>
         </View>
     )
 }
@@ -40,7 +40,7 @@ GnomScreen.navigationOptions={
 export default GnomScreen;
 
 const styles = StyleSheet.create({
-    gnom: {
+    image: {
         flex: 1,
         height: '100%',
         margin: 10
