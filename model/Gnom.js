@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import gnom from "../galeryGnoms/reducers/Gnom";
+import gnom from "../store/reducers/Gnom";
 
 class Gnom{
     constructor(id, ownerId, title, imageURL ){

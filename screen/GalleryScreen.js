@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
 import MainButton from '../components/MainButtons'
-import {useSelector} from 'react-redux'
+//import {useSelector} from 'react-redux'
 
 
 import GnomItem from '../components/GnomItem'
 
 const GalleryScreen = props => {
     //let ButtonComponent =TouchableOpacity;
-    const gnoms = useSelector(state=>state.gnoms.availableGnoms)
+    //const gnoms = useSelector(state=>state.gnoms.availableGnoms)
     return (   <FlatList data={gnoms} 
         keyExtractor={item=>item.id} renderItem={
             itemData=><GnomItem image={itemData.item.imageURL} 

@@ -5,18 +5,28 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import GnomScreen from './screen/GnomScreen'
 import GnomsNavigator from './navigation/GnomsNavigation';
 //import User from './database/User'
+import {createStore}from 'redux';
+import { Provider } from 'react-redux'
 
 import database from '@react-native-firebase/database';
 
-//const reference = database().ref('/users/123');
+import gnomsReducer from './store/reducers/Gnom'
 
+//const reference = database().ref('/users/123');
+const rootReducer =  gnomsReducer;
+
+
+const store= createStore(rootReducer);
 
 export default function App() {
  
   return (
   //  <User/>
-    <GnomsNavigator/>
+  <Provider store={store}>
+     <GnomsNavigator/>
     
+  </Provider>
+   
   );
 }
 
