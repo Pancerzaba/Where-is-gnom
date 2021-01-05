@@ -1,39 +1,39 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
 import MainButton from '../components/MainButtons'
-//import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 
 import GnomItem from '../components/GnomItem'
 
 const GalleryScreen = props => {
     //let ButtonComponent =TouchableOpacity;
-    //const gnoms = useSelector(state=>state.gnoms.availableGnoms)
-    return (   <FlatList data={gnoms} 
-        keyExtractor={item=>item.id} renderItem={
+    const gnoms = useSelector(state=>state.gnoms.availableGnoms);
+    return ( 
+      
+        <View style={styles.container}>
+            {/* <Text style={styles.title}>Galeria</Text> */}
+            <View style={styles.buttons}>
+                <MainButton>Wszystkie</MainButton>
+                <MainButton>Zebrane</MainButton>
+                <MainButton>Nie Zebrane</MainButton>
+            </View>
+            <View style={styles.fotos}
+             >
+                   <FlatList data={gnoms} 
+        keyExtractor={item=>item.id}
+        renderItem={
             itemData=><GnomItem image={itemData.item.imageURL} 
-            title={itemData.item.title}
-         
-             onViewDetail={()=>{}} 
-             onAddToCart={()=>{}} /> } />
-        // <View style={styles.container}>
-        //     {/* <Text style={styles.title}>Galeria</Text> */}
-        //     <View style={styles.buttons}>
-        //         <MainButton>Wszystkie</MainButton>
-        //         <MainButton>Zebrane</MainButton>
-        //         <MainButton>Nie Zebrane</MainButton>
-        //     </View>
-        //     <View style={styles.fotos}
-        //      >
-        //         <ButtonComponent  onPress={()=>{
-        //         props.navigation.navigate({routeName:'Gnom'})
-        //     }}>
-        //             <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} />
-        //         </ButtonComponent> 
-        //             <Image style={styles.foto} source={require('../assets/orzezwiacz.jpg')} />
-        //             <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} />
-        //         </View>
-        //     </View>
+            title={itemData.item.title}  />} />
+                {/* <ButtonComponent  onPress={()=>{
+                props.navigation.navigate({routeName:'Gnom'})
+            }}>
+                    <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} />
+                </ButtonComponent> 
+                    <Image style={styles.foto} source={require('../assets/orzezwiacz.jpg')} />
+                    <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} /> */}
+                </View>
+            </View>
      
     )
 }
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 20,
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
         textAlign: 'center',
         backgroundColor:'#452187',
         color: 'white',
