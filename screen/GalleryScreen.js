@@ -4,10 +4,11 @@ import MainButton from '../components/MainButtons'
 import {useSelector} from 'react-redux'
 
 
+
 import GnomItem from '../components/GnomItem'
 
 const GalleryScreen = props => {
-    //let ButtonComponent =TouchableOpacity;
+    let ButtonComponent =TouchableOpacity;
     const gnoms = useSelector(state=>state.gnoms.availableGnoms);
     return ( 
       
@@ -23,8 +24,16 @@ const GalleryScreen = props => {
                    <FlatList data={gnoms} 
         keyExtractor={item=>item.id}
         renderItem={
-            itemData=><GnomItem image={itemData.item.imageURL} 
-            title={itemData.item.title}  />} />
+            itemData=>
+            <ButtonComponent  onPress={()=>{
+                props.navigation.navigate('Gnom',{
+                    gnomId: itemData.item.id,
+                    productTitle: itemData.item.title
+                })
+            }}>
+            <GnomItem image={itemData.item.imageURL} 
+            title={itemData.item.title}  />
+            </ButtonComponent> }/>
                 {/* <ButtonComponent  onPress={()=>{
                 props.navigation.navigate({routeName:'Gnom'})
             }}>

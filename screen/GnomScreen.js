@@ -2,25 +2,28 @@ import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, Image, View, Alert, Button } from 'react-native';
 import MainButton from '../components/MainButtons';
 
+import {GNOMS} from '../database/dummy-data'
+import Gnom from '../model/gnom';
 
 
 const GnomScreen = props => {
   
    const[statusGnom, setStatusGnom] = useState('Dodaj')
-    const handleAddGnom={
-        
-    }
+    const handleAddGnom={    }
+
+    const gnomId = props.navigation.getParam('gnomId');    
+    const selectedProduct = GNOMS.find(prod => prod.id === gnomId)
+    
 return(
         <View style={styles.container}>
             {/* <Image style={styles.gnom} source={require('../assets/pomagajek.jpg')} /> */}
-            <Image style={styles.image} source={{uri: props.image}}/>
+            <Image style={styles.image} source={{uri: selectedProduct.imageURL}}/>
             <View style={styles.textConteiner}>
-                <Text style={styles.title}>Pomagajek</Text>
-                <Text style={styles.adres}>Sukiennice 12, Wrocław</Text>
+                <Text style={styles.title}>{selectedProduct.title}</Text>
+                <Text style={styles.adres}>{selectedProduct.adress} </Text>
                 <Text>
-                    Ten niezwykły krasnal to strażnik wartości, o których w dzisiejszych czasach tak łatwo zapominamy.
-                    Jego praca trwa nieustannie przez cały rok a jego misją jest poprawa jakości życia nieuleczalnie chorych dzieci i pomoc w ich leczeniu.
-                </Text>
+                    {selectedProduct.description}    
+                 </Text>
                 <View style={styles.buttons}>
                     <MainButton>Naviguj</MainButton>
                     <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
