@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, Image, TextInput, View, TouchableOpacity } from 'react-native'
 import MainButton from '../components/MainButtons'
+import Map from '../components/Map'
 
 const SearchScreen = props => {
     let ButtonComponent =TouchableOpacity;
@@ -19,12 +20,14 @@ const SearchScreen = props => {
                 <MainButton>Trasy</MainButton>
                 <MainButton>Kategorie</MainButton>
             </View>
-            <ButtonComponent style={styles.mapContainer} onPress={()=>{
+
+            <Map/>
+            {/* <ButtonComponent style={styles.mapContainer} onPress={()=>{
                     props.navigation.navigate({routeName:'Gnom'})
                 }}>
                 <Image style={styles.map} source={require('../assets/mapa.png')} 
                />
-            </ButtonComponent>
+            </ButtonComponent> */}
         </View>
     )
 }
