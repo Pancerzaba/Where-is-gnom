@@ -9,7 +9,7 @@ import Gnom from '../model/gnom';
 const GnomScreen = props => {
   
    const[statusGnom, setStatusGnom] = useState('Dodaj')
-    const handleAddGnom={    }
+
 
     const gnomId = props.navigation.getParam('gnomId');    
     const selectedProduct = GNOMS.find(prod => prod.id === gnomId)
@@ -18,7 +18,7 @@ return(
         <View style={styles.container}>
             {/* <Image style={styles.gnom} source={require('../assets/pomagajek.jpg')} /> */}
             <Image style={styles.image} source={{uri: selectedProduct.imageURL}}/>
-            <View style={styles.textConteiner}>
+             <View style={styles.textConteiner}> 
                 <Text style={styles.title}>{selectedProduct.title}</Text>
                 <Text style={styles.adres}>{selectedProduct.adress} </Text>
                 <Text>
@@ -28,7 +28,9 @@ return(
                     <MainButton>Naviguj</MainButton>
                     <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
                 </View>
-            </View>
+            </View> 
+         
+
         </View>
     )
 }
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         backgroundColor:'#452187',
         color: 'white',
-        padding: '10px',
+        padding: 10,
         borderRadius: 2,
         margin: 10
     },
