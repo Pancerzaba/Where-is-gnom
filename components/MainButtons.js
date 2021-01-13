@@ -22,20 +22,31 @@ const MainButton = props => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#452187',
-    paddingVertical: 8,
-    paddingHorizontal: 10,
-    borderRadius: 25
+    //height:' 50%',
+    //width: '100%',
+    margin: 2,
+  alignItems: 'center'
+ 
   },
   buttonContainer:{
-    borderRadius: 21,
-    overflow: 'hidden',
-    margin:5
+    borderRadius: 5,
+    //overflow: 'hidden',
+   // margin:5,
+    padding: 5,
+    //backgroundColor: 'silver',
+  alignItems: 'center'
+   
   },
   buttonText: {
+    display: 'flex',
+    margin: 5,
     color: 'white',
- 
+ //backgroundColor:'red',
     fontSize: 18,
-    textAlign: 'center'
+    textAlign: 'center',
+   // marginVertical: 10,
+    padding: 2,
+    //backgroundColor: 'red'
   }
 });
 

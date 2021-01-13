@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, Text, Image, TextInput, View, TouchableOpacity } from 'react-native'
 import MainButton from '../components/MainButtons'
 import Map from '../components/Map'
+import {useSelector} from 'react-redux'
 
 const SearchScreen = props => {
     let ButtonComponent =TouchableOpacity;
     const [value, onChangeText] = React.useState('Szukaj krasnala');
+    const gnoms = useSelector(state=>state.gnoms.availableGnoms);
+  
+
     return (
         <View style={styles.container}>
             <View style={styles.inputContainer}>
@@ -21,7 +25,7 @@ const SearchScreen = props => {
                 <MainButton>Kategorie</MainButton>
             </View>
 
-            <Map/>
+            <Map navigation={props.navigation}  gnoms={gnoms}/>
             {/* <ButtonComponent style={styles.mapContainer} onPress={()=>{
                     props.navigation.navigate({routeName:'Gnom'})
                 }}>

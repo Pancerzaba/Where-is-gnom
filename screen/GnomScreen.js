@@ -11,12 +11,14 @@ const GnomScreen = props => {
    const[statusGnom, setStatusGnom] = useState('Dodaj')
 
 
-    const gnomId = props.navigation.getParam('gnomId');    
+    const gnomId = props.navigation.getParam('gnomId');  
+    
+    console.log(gnomId)
     const selectedProduct = GNOMS.find(prod => prod.id === gnomId)
     
 return(
         <View style={styles.container}>
-            {/* <Image style={styles.gnom} source={require('../assets/pomagajek.jpg')} /> */}
+           
             <Image style={styles.image} source={{uri: selectedProduct.imageURL}}/>
              <View style={styles.textConteiner}> 
                 <Text style={styles.title}>{selectedProduct.title}</Text>
@@ -29,7 +31,7 @@ return(
                     <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
                 </View>
             </View> 
-         
+
 
         </View>
     )
@@ -52,14 +54,17 @@ const styles = StyleSheet.create({
 
     },
     container: {
-        width: '100%',
-        height: '100%',
-
+        //width: '100%',
+       height: '100%',
+        //backgroundColor:'green',
        
     },textConteiner: {
         alignItems: 'center',
         margin: 10,
-        textAlign: 'center'
+        textAlign: 'center',
+        width: '95%',
+       // backgroundColor: 'red',
+        padding: 10
     },
     title: {
         fontSize: 20,
@@ -78,8 +83,9 @@ const styles = StyleSheet.create({
     buttons:{
         flexDirection: 'row',
         display:'flex',
-        alignItems: 'center',
+        //alignItems: 'center',
         margin: 10,
+      //  width: '45%'
         
     }
 })

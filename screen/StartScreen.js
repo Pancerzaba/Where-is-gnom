@@ -1,17 +1,20 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, Button } from 'react-native'
 import MyButton from '../components/MainButtons'
+import {useSelector} from 'react-redux'
 
 const StartScreen = props => {
+    const gnoms = useSelector(state=>state.gnoms.availableGnoms);
     return (
 
-        <View>
+        <View style={styles.container}>
             <View style={styles.logoContainer}>
                 <Image style={styles.Logo} source={require('../assets/logov1.png')} />
             </View>
             <View style={styles.buttons}>
                 <MyButton  onPress={()=>{
-                    props.navigation.navigate({routeName:'Search'})
+                    props.navigation.navigate({routeName: 'Search'})
+                 
                 }} >Znajdz krasnala</MyButton>
                 <MyButton  onPress={()=>{
                     props.navigation.navigate({routeName:'Gallery'})
@@ -33,10 +36,14 @@ StartScreen.navigationOptions={
 export default StartScreen
 
 const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center'
+    },
     buttons: {
         height: 200,
-        justifyContent: 'space-between'
-
+        //alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '90%'
 
     }, Logo: {
         width: 150,

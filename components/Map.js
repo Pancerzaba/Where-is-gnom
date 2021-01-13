@@ -1,26 +1,88 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import MapView from 'react-native-maps'
+import { useSelector} from 'react-redux'
 
-export default function Map() {
+import { Marker } from 'react-native-maps';
+
+ const Map= props=> {
+   console.log(props)
+  const gnoms = useSelector(state=>state.gnoms.availableGnoms);
+
+  
+  
+
+
    return(
-    <View style={styles.container}>
-    <MapView style={styles.map} region={{
-      latitude: 51.10000000,
+    <View style={styles.container} >
+
+<MapView 
+        style={styles.map}           
+  region={{
+    latitude: 51.1090000,
+    longitude: 17.0333000,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01
+  }}
+>
+  {props.gnoms.map((gnom) => (
+    <Marker
+    key={gnom.id}
+      coordinate={{ latitude : gnom.lat , longitude : gnom.lng}}
+      title={gnom.title}
+      description={gnom.adress}
+      onPress={(e)=>{
+       e.stopPropagation()
+       props.navigation.navigate('Gnom',{gnomId: gnom.id})
+        }}
+    />
+  ))}
+</MapView>
+
+
+    {/* <MapView style={styles.map} region={{
+      latitude: 51.1090000,
       longitude: 17.0333000,
-      latitudeDelta: 0.1,
-      longitudeDelta: 0.1
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01
     }}>
       <MapView.Marker coordinate={{
-           latitude: 51.10000000,
-           longitude: 17.0333000,
-      }} title={"Wrocław"} description={'Stolica Dolnegośląska'} />
+           latitude: 51.10977854,
+           longitude: 17.03175120,
+      }} title={"Pomagajek"} description={'Sukiennice 2'}  onPress={()=>{
+        props.navigation.navigate('Gnom',{
+            gnomId: itemData.item.id,
+            productTitle: itemData.item.title
+        })
+    }}/>
+      <MapView.Marker coordinate={{
+           latitude: 51.10992499,
+           longitude: 17.03126084,
+      }} title={"Wodziarz"} description={'Rynek'} /> */}
+{/* 
+{this.state.markers.map((marker, gnoms) => (
+    <Marker
+      key={item.itemData.id}
+      coordinate={item.itemData.latlng}
+      title={item.itemData.title}
+      description={item.itemData.description}
+    />
+  ))} */}
+{/* <MapView.Marker coordinate={{
+           latitude: 51.10977854,
+           longitude:  17.03175120,
+      }} title={"Pomagajek"} description={'Sukiennice 2'} /> */}
+         {/* <MapView.Marker coordinate={{
+           latitude: 51.10992499830175,
+           longitude:  17.031260849882976,
+      }} title={"Wodziarz"} description={'Ratusz'} /> */}
 
-    </MapView>
+   {/* </MapView> */}
 </View>
    )
 }
 
+export default Map;
    const styles = StyleSheet.create({
     container: {
         position: 'absolute',
