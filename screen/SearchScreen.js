@@ -19,11 +19,11 @@ const SearchScreen = props => {
                 />
             </View>
 
-            <View style={styles.buttons}>
+            {/* <View style={styles.buttons}>
                 <MainButton>Dzielnice</MainButton>
                 <MainButton>Trasy</MainButton>
                 <MainButton>Kategorie</MainButton>
-            </View>
+            </View> */}
 
             <Map navigation={props.navigation}  gnoms={gnoms}/>
             {/* <ButtonComponent style={styles.mapContainer} onPress={()=>{

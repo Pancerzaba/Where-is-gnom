@@ -3,7 +3,7 @@ import { StyleSheet, Text, Image, View, Alert, Button } from 'react-native';
 import MainButton from '../components/MainButtons';
 
 import {GNOMS} from '../database/dummy-data'
-import Gnom from '../model/gnom';
+
 
 
 const GnomScreen = props => {
@@ -27,7 +27,12 @@ return(
                     {selectedProduct.description}    
                  </Text>
                 <View style={styles.buttons}>
-                    <MainButton>Naviguj</MainButton>
+                    <MainButton  onPress={()=>{ //sprawdzic czy przekazuje
+                            props.navigation.navigate('Nawiguj',{
+                                gnomId: selectedProduct.id,
+                                productTitle: selectedProduct.title
+                            })
+                            }}>Naviguj</MainButton>
                     <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
                 </View>
             </View> 

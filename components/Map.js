@@ -6,7 +6,7 @@ import { useSelector} from 'react-redux'
 import { Marker } from 'react-native-maps';
 
  const Map= props=> {
-   console.log(props)
+   
   const gnoms = useSelector(state=>state.gnoms.availableGnoms);
 
   
