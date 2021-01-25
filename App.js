@@ -5,28 +5,34 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 //import MapView from 'react-native-maps'
 import GnomScreen from './screen/GnomScreen'
 import GnomsNavigator from './navigation/GnomsNavigation';
-//import User from './database/User'
-import {createStore, combineReducers}from 'redux';
+import {createStore, applyMiddleware, combineReducers}from 'redux';
 import { Provider } from 'react-redux'
-
-// import database from '@react-native-firebase/database';
 
 import gnomsReducer from './store/reducers/gnoms'
 import GalleryScreen from './screen/GalleryScreen';
 
-//const reference = database().ref('/users/123');
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import firebaseConfig from './config/firebase'
+
+import thunk from 'redux-thunk'
+
+if(firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig)
+}
+
 const rootReducer =  combineReducers({
   gnoms: gnomsReducer});
 
 
-const store= createStore(rootReducer);
+const store= createStore(rootReducer, applyMiddleware(thunk));
 
 export default function App() {
  
   return (
     <Provider store={store}>
           <GnomsNavigator/>
-   {/* <User/> */}
+
     </Provider>
 
 

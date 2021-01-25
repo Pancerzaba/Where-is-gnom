@@ -1,10 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, Button } from 'react-native'
 import MyButton from '../components/MainButtons'
-import {useSelector} from 'react-redux'
 
 const StartScreen = props => {
-    const gnoms = useSelector(state=>state.gnoms.availableGnoms);
     return (
 
         <View style={styles.container}>
