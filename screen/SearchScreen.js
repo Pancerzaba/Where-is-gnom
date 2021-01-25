@@ -7,7 +7,7 @@ import {useSelector} from 'react-redux'
 const SearchScreen = props => {
     let ButtonComponent =TouchableOpacity;
     const [value, onChangeText] = React.useState('Szukaj krasnala');
-    const gnoms = useSelector(state=>state.gnoms.availableGnoms);
+    const {availableGnoms} = useSelector(state=>state.gnoms);
   
 
     return (
@@ -25,7 +25,7 @@ const SearchScreen = props => {
                 <MainButton>Kategorie</MainButton>
             </View> */}
 
-            <Map navigation={props.navigation}  gnoms={gnoms}/>
+            <Map navigation={props.navigation}  gnoms={availableGnoms}/>
             {/* <ButtonComponent style={styles.mapContainer} onPress={()=>{
                     props.navigation.navigate({routeName:'Gnom'})
                 }}>

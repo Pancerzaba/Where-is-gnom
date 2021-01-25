@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import { StyleSheet, Text, Image, View, Alert, Button } from 'react-native';
 import MainButton from '../components/MainButtons';
+import {fetchGnome} from '../store/actions/Gnom'
 
-import {GNOMS} from '../database/dummy-data'
 
 
 
@@ -10,27 +11,34 @@ const GnomScreen = props => {
   
    const[statusGnom, setStatusGnom] = useState('Dodaj')
 
+   const {gnome} = useSelector(state => state.gnoms)
 
-    const gnomId = props.navigation.getParam('gnomId');  
+   const dispatch = useDispatch()
+
+   const gnomId = props.navigation.getParam('gnomId');  
+
+   useEffect(() => {
+       dispatch(fetchGnome(gnomId))
+   }, [gnomId])
+
+
     
-    console.log(gnomId)
-    const selectedProduct = GNOMS.find(prod => prod.id === gnomId)
     
 return(
         <View style={styles.container}>
            
-            <Image style={styles.image} source={{uri: selectedProduct.imageURL}}/>
+            <Image style={styles.image} source={{uri: gnome.imageURL}}/>
              <View style={styles.textConteiner}> 
-                <Text style={styles.title}>{selectedProduct.title}</Text>
-                <Text style={styles.adres}>{selectedProduct.adress} </Text>
+                <Text style={styles.title}>{gnome.title}</Text>
+                <Text style={styles.adres}>{gnome.adress} </Text>
                 <Text>
-                    {selectedProduct.description}    
+                    {gnome.description}    
                  </Text>
                 <View style={styles.buttons}>
                     <MainButton  onPress={()=>{ //sprawdzic czy przekazuje
                             props.navigation.navigate('Nawiguj',{
-                                gnomId: selectedProduct.id,
-                                productTitle: selectedProduct.title
+                                gnomId: gnome.id,
+                                productTitle: gnome.title
                             })
                             }}>Naviguj</MainButton>
                     <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>

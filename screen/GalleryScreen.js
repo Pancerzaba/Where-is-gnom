@@ -1,26 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import MainButton from '../components/MainButtons'
-import {useSelector} from 'react-redux'
+import {fetchGnomes} from '../store/actions/Gnom'
 
 
 
 import GnomItem from '../components/GnomItem'
 
 const GalleryScreen = props => {
+
+    const {availableGnoms} = useSelector(state => state.gnoms)
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+       dispatch(fetchGnomes())
+    }, [])
     let ButtonComponent =TouchableOpacity;
-    const gnoms = useSelector(state=>state.gnoms.availableGnoms);
     return ( 
       <ScrollView>
         <View style={styles.container}>
-            {/* <Text style={styles.title}>Galeria</Text> */}
             <View style={styles.buttons}>
                 <MainButton>Wszystkie</MainButton>
                 <MainButton>Zebrane</MainButton>
                 <MainButton>Nie Zebrane</MainButton>
             </View>
             <View style={styles.fotos}>
-                <FlatList data={gnoms} 
+                <FlatList data={availableGnoms} 
                     keyExtractor={item=>item.id}
                     renderItem={
                         itemData=>
@@ -34,13 +41,6 @@ const GalleryScreen = props => {
                             title={itemData.item.title}  />
                         </ButtonComponent> }
                 />
-                {/* <ButtonComponent  onPress={()=>{
-                props.navigation.navigate({routeName:'Gnom'})
-            }}>
-                    <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} />
-                </ButtonComponent> 
-                    <Image style={styles.foto} source={require('../assets/orzezwiacz.jpg')} />
-                    <Image style={styles.foto} source={require('../assets/pomagajek.jpg')} /> */}
                 </View>
             </View>
             </ScrollView>
