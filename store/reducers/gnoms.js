@@ -1,8 +1,22 @@
-import {GNOMS} from '../../database/dummy-data'
+import { FETCH_GNOMES, FETCH_GNOME } from '../constants';
 const initialState={
-    availableGnoms:GNOMS,
-    //: GNOMS.filter(gnoms=>gnoms.ownerID ==='u1')
+    availableGnoms:[],
+    gnome: {}
 }
 export default (state = initialState, action)=>{
-    return state;
+    switch(action.type) {
+        case FETCH_GNOMES:
+            return {
+                ...state,
+                availableGnoms: action.payload
+            }
+            case FETCH_GNOME:
+            return {
+                ...state,
+                gnome: action.payload
+            }
+        default:
+            return state;
+    }
+   
 }
