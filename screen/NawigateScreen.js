@@ -49,17 +49,17 @@ const NawigateScreen = (props) => {
 
   return (
     <View>
-      <Text> {latitude} </Text>
+      {/* <Text> {latitude} </Text>
       <Text> {longitude} </Text>
   <Text>{gnome.title}</Text>
   <Text>szer {gnome.lat}</Text>
-  <Text>dlu {gnome.lng}</Text>
+  <Text>dlu {gnome.lng}</Text> */}
 
   <MapView 
       style={styles.map}           
       initialRegion={{
-  latitude: 51.1090000,
-  longitude: 17.0333000,
+  latitude: gnome.lat,
+  longitude: gnome.lng,
   latitudeDelta: 0.01,
   longitudeDelta: 0.01
 }}
@@ -69,10 +69,11 @@ const NawigateScreen = (props) => {
          longitude: gnome.lng,
     }} title={gnome.title} description={gnome.adress}  />
 
-<Marker  coordinate={{
-         latitude: 37.3318456,
-         longitude:  17.0333000,
-    }} title={'fjtj'}  description={'ja'}  />
+{/* <Marker  coordinate={{
+         latitude: latitude,
+         longitude:  longitude,
+         
+    }} title={'Tu jestem'}   /> */}
 
   {/* <Marker
   key={gnom.id}
@@ -95,6 +96,13 @@ const NawigateScreen = (props) => {
     </View>
   );
 }
+NawigateScreen.navigationOptions={
+  headerTitle: ' Nawiguj do krasnala ',
+  headerStyle: {
+      backgroundColor: '#452187',
+  },
+  headerTintColor: 'white'
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -103,7 +111,7 @@ const styles = StyleSheet.create({
   },
   map: {
    width:'100%',
-   height: '70%'
+   height: '100%'
   },
 });
 

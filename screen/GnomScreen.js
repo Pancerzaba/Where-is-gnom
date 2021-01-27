@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { StyleSheet, Text, Image, View, Alert, Button } from 'react-native';
+import { StyleSheet, Text, Image, View, ScrollView, Button } from 'react-native';
 import MainButton from '../components/MainButtons';
 import {fetchGnome} from '../store/actions/Gnom'
 
@@ -26,8 +26,11 @@ const GnomScreen = props => {
     
 return(
         <View style={styles.container}>
-           
-            <Image style={styles.image} source={{uri: gnome.imageURL}}/>
+           <ScrollView>
+               <View style = {styles.imageContainer}>
+                    <Image style={styles.image} source={{uri: gnome.imageURL}}/>  
+               </View>
+
              <View style={styles.textConteiner}> 
                 <Text style={styles.title}>{gnome.title}</Text>
                 <Text style={styles.adres}>{gnome.adress} </Text>
@@ -41,11 +44,11 @@ return(
                                 productTitle: gnome.title
                             })
                             }}>Naviguj</MainButton>
-                    <MainButton  onPress={ ()=>setStatusGnom('Dodano')}  >{statusGnom}</MainButton>
+                    <MainButton  onPress={ ()=>setStatusGnom('Znaleziony')}  >{statusGnom}</MainButton>
                 </View>
             </View> 
 
-
+            </ScrollView>
         </View>
     )
 }
@@ -62,21 +65,28 @@ export default GnomScreen;
 const styles = StyleSheet.create({
     image: {
         flex: 1,
-        height: '100%',
-        margin: 10
+        height: 400,
+        width: 300,
+        margin: 10,
+        
 
+    },imageContainer:{
+        height: 400,
+        width: '100%',
+   
+        alignItems: 'center'
     },
     container: {
-        //width: '100%',
+        width: '100%',
        height: '100%',
-        //backgroundColor:'green',
+       
        
     },textConteiner: {
         alignItems: 'center',
         margin: 10,
         textAlign: 'center',
         width: '95%',
-       // backgroundColor: 'red',
+      
         padding: 10
     },
     title: {
