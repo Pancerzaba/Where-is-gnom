@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import MapView from 'react-native-maps'
+import MapView, { Callout } from 'react-native-maps'
 import { useSelector} from 'react-redux'
 
 import { Marker } from 'react-native-maps';
@@ -29,13 +29,16 @@ import { Marker } from 'react-native-maps';
     <Marker
     key={gnom.id}
       coordinate={{ latitude : gnom.lat , longitude : gnom.lng}}
-      title={gnom.title}
-      description={gnom.adress}
-      onPress={(e)=>{
-       e.stopPropagation()
-       props.navigation.navigate('Gnom',{gnomId: gnom.id})
-        }}
-    />
+    
+    
+    ><Callout    onPress={(e)=>{
+      e.stopPropagation()
+      props.navigation.navigate('Gnom',{gnomId: gnom.id})
+       }}>
+         <View>
+      <Text>{gnom.title}</Text>
+         </View>
+         </Callout></Marker>
   ))}
 </MapView>
 
