@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useSelector, useDispatch} from 'react-redux'
-import { AppRegistry, StyleSheet, Dimensions, View } from "react-native";
-import { Container, Text } from "native-base";
+import {  StyleSheet,  View } from "react-native";
+
 import MapView from 'react-native-maps'
 import MapViewDirections from 'react-native-maps-directions';
 import { Marker } from 'react-native-maps';

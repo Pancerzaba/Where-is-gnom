@@ -16,8 +16,8 @@ const StartScreen = props => {
                 }} >Znajdz krasnala</MyButton>
                 <MyButton  onPress={()=>{
                     props.navigation.navigate({routeName:'Gallery'})
-                }} >Twoje krasnale</MyButton>
-                <MyButton >Wydarzenia</MyButton>
+                }} >Galeria krasnali</MyButton>
+                {/* <MyButton >Wydarzenia</MyButton> */}
 
 
             </View>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     buttons: {
-        height: 200,
+        height: 150,
         //alignItems: 'center',
         justifyContent: 'space-between',
         width: '90%'

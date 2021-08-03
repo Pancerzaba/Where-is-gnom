@@ -21,11 +21,11 @@ const GalleryScreen = props => {
     return ( 
       <ScrollView>
         <View style={styles.container}>
-            <View style={styles.buttons}>
+            {/* <View style={styles.buttons}>
                 <MainButton>Wszystkie</MainButton>
                 <MainButton>Zebrane</MainButton>
                 <MainButton>Nie Zebrane</MainButton>
-            </View>
+            </View> */}
             <View style={styles.fotos}>
                 <FlatList data={availableGnoms} 
                     keyExtractor={item=>item.id}
