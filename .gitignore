@@ -14,5 +14,4 @@ web-build/
 components/HeaderButton.js
 /env.js
 env.js
-config/*
-config/firebase.js
+
