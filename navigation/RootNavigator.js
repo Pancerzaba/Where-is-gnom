@@ -16,7 +16,7 @@ export const RootNavigator = () => {
     <>
       {authIsReady && (
         <NavigationContainer>
-          {!user ? <AppStack /> : <AuthStack />}
+          {user ? <AppStack /> : <AuthStack />}
         </NavigationContainer>
       )}
     </>

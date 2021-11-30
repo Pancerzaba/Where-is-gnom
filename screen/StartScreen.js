@@ -8,8 +8,14 @@ import {
   Button,
 } from "react-native";
 import MyButton from "../components/MainButtons";
+import { useLogout } from "../hooks/useLogout";
 
 const StartScreen = (props) => {
+  const { logout } = useLogout();
+
+  const handleLogout = async () => {
+    await logout();
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -32,7 +38,7 @@ const StartScreen = (props) => {
             >
               Galeria krasnali
             </MyButton>
-            {/* <MyButton >Wydarzenia</MyButton> */}
+            <MyButton onPress={handleLogout}>Wyloguj</MyButton>
           </View>
         </View>
       </ImageBackground>

@@ -8,43 +8,53 @@ import {
   View,
 } from "react-native";
 import MainButton from "../components/MainButtons";
-import { useLogin } from "../hooks/useLogin";
+import { useSignup } from "../hooks/useSignup";
 
 const LoginScreen = ({ navigation }) => {
   let ButtonComponent = TouchableOpacity;
-  const [valueMail, onChangeMail] = React.useState("mail");
-  const [valuePassword, onChangePassword] = React.useState("hasło");
+  const [mail, setMail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [displayName, setDisplayName] = React.useState("");
 
-  const handleLogin = () => {
-    login(valueMail, valuePassword);
+  const handleSignup = () => {
+    signup(mail, password, displayName);
   };
 
-  const { login, isPending, error } = useLogin();
+  const { signup, isPending, error } = useSignup();
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <Text>Zaloguj sie cipo</Text>
-        {/* TODO: dodać walidację */}
+        <Text>Zarejestruj sie cipo</Text>
+        {/* TODO: dodać walidację; haslo musi miec 6 znaków */}
         <TextInput
           style={styles.input}
-          onChangeText={(text) => onChangeMail(text)}
-          value={valueMail}
+          onChangeText={(text) => setMail(text)}
+          value={mail}
+          placeholder="E-mail"
         />
         <TextInput
           style={styles.input}
-          onChangeText={(text) => onChangePassword(text)}
-          value={valuePassword}
+          onChangeText={(text) => setPassword(text)}
+          value={password}
+          secureTextEntry
+          placeholder="Hasło"
         />
-        <MainButton onPress={handleLogin}>Zaloguj</MainButton>
+        <TextInput
+          style={styles.input}
+          onChangeText={(text) => setDisplayName(text)}
+          value={displayName}
+          placeholder="Ksywka"
+        />
+        <MainButton onPress={handleSignup}>Zarejestruj</MainButton>
       </View>
       <View style={styles.haveAccount}>
-        <Text>Nie masz jeszcze konta? Załóż!</Text>
+        <Text>Masz już konto? Zaloguj się!</Text>
         <MainButton
           onPress={() => {
-            navigation.navigate("Signup");
+            navigation.navigate("Login");
           }}
         >
-          Załóż konto
+          Zaloguj
         </MainButton>
       </View>
     </View>
@@ -53,7 +63,7 @@ const LoginScreen = ({ navigation }) => {
 
 export default LoginScreen;
 LoginScreen.navigationOptions = {
-  headerTitle: "Login ",
+  headerTitle: "Signup ",
   headerStyle: {
     backgroundColor: "#452187",
   },
