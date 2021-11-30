@@ -9,12 +9,12 @@ import {
 } from "react-native";
 import MainButton from "../components/MainButtons";
 import Map from "../components/Map";
-// import { useSelector } from "react-redux";
+import { useCollection } from "../hooks/useCollection";
 
 const SearchScreen = (props) => {
   let ButtonComponent = TouchableOpacity;
   const [value, onChangeText] = React.useState("Szukaj krasnala");
-  //   const { availableGnoms } = useSelector((state) => state.gnoms);
+  const { documents, error } = useCollection("gnomes");
 
   return (
     <View style={styles.container}>
@@ -32,13 +32,7 @@ const SearchScreen = (props) => {
                 <MainButton>Kategorie</MainButton>
             </View> */}
 
-      <Map navigation={props.navigation} />
-      {/* <ButtonComponent style={styles.mapContainer} onPress={()=>{
-                    props.navigation.navigate({routeName:'Gnom'})
-                }}>
-                <Image style={styles.map} source={require('../assets/mapa.png')} 
-               />
-            </ButtonComponent> */}
+      {documents && <Map navigation={props.navigation} gnoms={documents} />}
     </View>
   );
 };

@@ -27,7 +27,7 @@ const StartScreen = (props) => {
             </MyButton>
             <MyButton
               onPress={() => {
-                props.navigation.navigate({ routeName: "Gallery" });
+                props.navigation.navigate("Gallery");
               }}
             >
               Galeria krasnali

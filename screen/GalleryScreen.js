@@ -13,26 +13,24 @@ import MainButton from "../components/MainButtons";
 import { fetchGnomes } from "../store/actions/Gnom";
 
 import GnomItem from "../components/GnomItem";
+import { useCollection } from "../hooks/useCollection";
 
 const GalleryScreen = (props) => {
-  const { availableGnoms } = useSelector((state) => state.gnoms);
-  const dispatch = useDispatch();
+  const { documents, error } = useCollection("gnomes");
 
-  useEffect(() => {
-    dispatch(fetchGnomes());
-  }, []);
   let ButtonComponent = TouchableOpacity;
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        {/* <View style={styles.buttons}>
+    <View style={styles.container}>
+      {/* <View style={styles.buttons}>
                 <MainButton>Wszystkie</MainButton>
                 <MainButton>Zebrane</MainButton>
                 <MainButton>Nie Zebrane</MainButton>
             </View> */}
-        <View style={styles.fotos}>
+      <View style={styles.fotos}>
+        {documents && (
           <FlatList
-            data={availableGnoms}
+            data={documents}
             keyExtractor={(item) => item.id}
             renderItem={(itemData) => (
               <ButtonComponent
@@ -50,9 +48,9 @@ const GalleryScreen = (props) => {
               </ButtonComponent>
             )}
           />
-        </View>
+        )}
       </View>
-    </ScrollView>
+    </View>
   );
 };
 GalleryScreen.navigationOptions = {

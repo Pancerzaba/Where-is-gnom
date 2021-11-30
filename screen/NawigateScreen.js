@@ -1,51 +1,53 @@
 import React, { useState, useEffect } from "react";
-import {useSelector, useDispatch} from 'react-redux'
-import {  StyleSheet,  View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import * as Location from "expo-location";
 
-import MapView from 'react-native-maps'
-import MapViewDirections from 'react-native-maps-directions';
-import { Marker } from 'react-native-maps';
-import ENV from '../env'
-import { fetchGnome } from "../store/actions/Gnom";
+import MapView, { Polyline } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
+import { Marker } from "react-native-maps";
+import { useDocument } from "../hooks/useDocument";
+import ENV from "../env";
 
-const NawigateScreen = (props) => {
+const NawigateScreen = ({ navigation, route }) => {
+  const { gnomId } = route.params;
 
-  const gnomId = props.navigation.getParam('gnomId');  
+  const { document, error } = useDocument("gnomes", gnomId);
 
-  const {gnome} = useSelector(state => state.gnoms)
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const dispatch = useDispatch()
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       console.log("wokeeey");
+  //       console.log(position);
+  //       setLatitude(position.coords.latitude);
+  //       setLongitude(position.coords.longitude);
+  //       setError(null);
+  //     },
+  //     (err) => setErr(err.message),
+  //     { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 }
+  //   );
+  // }, []);
 
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+  };
 
   useEffect(() => {
-      dispatch(fetchGnome(gnomId))
-  }, [gnomId])
+    getLocation();
+  }, []);
 
-
-  const [latitude, setLatitude] = useState(null)
-  const [longitude, setLongitude] = useState(null)
-  const [error, setError] = useState(null)
-
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log("wokeeey");
-        console.log(position);
-        setLatitude(position.coords.latitude)
-        setLongitude(position.coords.longitude)
-        setError(null)
-      },
-      (err) => setErr(err.message),
-      { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
-    );
-  }, [])
-
-  
-  const origin = {latitude:  51.0926288, longitude:  17.0140662};
-  const destination = {latitude: gnome.lat, longitude: gnome.lng};
-  
-
+  console.log(location);
 
   return (
     <View>
@@ -55,27 +57,32 @@ const NawigateScreen = (props) => {
   <Text>szer {gnome.lat}</Text>
   <Text>dlu {gnome.lng}</Text> */}
 
-  <MapView 
-      style={styles.map}           
-      initialRegion={{
-  latitude: gnome.lat,
-  longitude: gnome.lng,
-  latitudeDelta: 0.01,
-  longitudeDelta: 0.01
-}}
->
-<Marker coordinate={{
-         latitude: gnome.lat,
-         longitude: gnome.lng,
-    }} title={gnome.title} description={gnome.adress}  />
+      {document && location && (
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          }}
+        >
+          <Marker
+            coordinate={{
+              latitude: document.lat,
+              longitude: document.lng,
+            }}
+            title={document.title}
+            description={document.adress}
+          />
 
-{/* <Marker  coordinate={{
+          {/* <Marker  coordinate={{
          latitude: latitude,
          longitude:  longitude,
          
     }} title={'Tu jestem'}   /> */}
 
-  {/* <Marker
+          {/* <Marker
   key={gnom.id}
     coordinate={{ latitude : gnom.lat , longitude : gnom.lng}}
     title={gnom.title}
@@ -85,36 +92,39 @@ const NawigateScreen = (props) => {
      props.navigation.navigate('Gnom',{gnomId: gnom.id})
       }}
   /> */}
-  <MapViewDirections
-  origin={origin}
-  destination={destination}
-  apikey={ENV.GOOGLE_MAPS_APIKEY}
-  strokeWidth={2}
-  strokeColor="red"
-/>
-</MapView>
+          <MapViewDirections
+            origin={{
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+            }}
+            destination={{ latitude: document.lat, longitude: document.lng }}
+            apikey={ENV.GOOGLE_MAPS_APIKEY}
+            strokeWidth={2}
+            strokeColor="red"
+            lineDashPattern={[1]}
+          />
+        </MapView>
+      )}
     </View>
   );
-}
-NawigateScreen.navigationOptions={
-  headerTitle: ' Nawiguj do krasnala ',
+};
+NawigateScreen.navigationOptions = {
+  headerTitle: " Nawiguj do krasnala ",
   headerStyle: {
-      backgroundColor: '#452187',
+    backgroundColor: "#452187",
   },
-  headerTintColor: 'white'
-}
+  headerTintColor: "white",
+};
 
 const styles = StyleSheet.create({
   container: {
-    width:'100%',
-    height: '70%'
+    width: "100%",
+    height: "70%",
   },
   map: {
-   width:'100%',
-   height: '100%'
+    width: "100%",
+    height: "100%",
   },
 });
 
 export default NawigateScreen;
-
-
