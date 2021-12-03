@@ -1,19 +1,11 @@
 import React from "react";
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import MainButton from "../components/MainButtons";
 import { useLogin } from "../hooks/useLogin";
 
 const LoginScreen = ({ navigation }) => {
-  let ButtonComponent = TouchableOpacity;
-  const [valueMail, onChangeMail] = React.useState("mail");
-  const [valuePassword, onChangePassword] = React.useState("hasło");
+  const [valueMail, onChangeMail] = React.useState("");
+  const [valuePassword, onChangePassword] = React.useState("");
 
   const handleLogin = () => {
     login(valueMail, valuePassword);
@@ -29,11 +21,14 @@ const LoginScreen = ({ navigation }) => {
           style={styles.input}
           onChangeText={(text) => onChangeMail(text)}
           value={valueMail}
+          placeholder={"mail"}
         />
         <TextInput
           style={styles.input}
           onChangeText={(text) => onChangePassword(text)}
           value={valuePassword}
+          placeholder={"hasło"}
+          secureTextEntry
         />
         <MainButton onPress={handleLogin}>Zaloguj</MainButton>
       </View>
