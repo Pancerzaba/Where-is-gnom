@@ -11,6 +11,7 @@ export const useSignup = () => {
   const [error, setError] = React.useState(null);
   const [isPending, setIsPending] = React.useState(false);
   const { dispatch } = useAuthContext();
+  const gnomesId = [];
 
   const signup = async (email, password, displayName) => {
     setError(null);
@@ -31,6 +32,7 @@ export const useSignup = () => {
       // create a user document
       await projectFirestore.collection("users").doc(res.user.uid).set({
         displayName,
+        gnomesId,
       });
 
       // dispatch login action
