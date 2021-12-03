@@ -6,10 +6,7 @@ import { useFirestore } from "../hooks/useFirestore";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const GnomScreen = ({ route, navigation }) => {
-  const [statusGnom, setStatusGnom] = React.useState(false);
-  const [message, setMessage] = React.useState("");
   const [founded, setFounded] = React.useState(false);
-  const [addGnomes, setAddGnomes] = React.useState([]);
 
   const { gnomId } = route.params;
   const { user } = useAuthContext();
@@ -21,15 +18,17 @@ const GnomScreen = ({ route, navigation }) => {
   );
   const { updateDocument, response } = useFirestore("users");
 
-  const gnomExist = userDocument?.gnomesId.some((id) => id === gnomId);
-
-  const handleGnomes = async () => {
-    if (gnomExist) {
+  React.useEffect(() => {
+    const gnomExist = userDocument?.gnomesId.some((id) => id === gnomId);
+    if (!gnomExist) {
       return;
     }
-    setAddGnomes(gnomId);
+    setFounded(true);
+  }, []);
+
+  const handleGnomes = async () => {
     await updateDocument(userDocument.id, {
-      gnomesId: [...userDocument.gnomesId, addGnomes],
+      gnomesId: [...userDocument.gnomesId, gnomId],
     });
   };
 
@@ -57,8 +56,8 @@ const GnomScreen = ({ route, navigation }) => {
               >
                 Naviguj
               </MainButton>
-              {gnomExist ? (
-                <MainButton founded={gnomExist}>Dodany</MainButton>
+              {founded ? (
+                <MainButton founded={founded}>Dodany</MainButton>
               ) : (
                 <MainButton onPress={handleGnomes}>Dodaj</MainButton>
               )}
