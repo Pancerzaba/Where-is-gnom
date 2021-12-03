@@ -12,7 +12,11 @@ const Stack = createNativeStackNavigator();
 export const AppStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Start" component={StartScreen} />
+      <Stack.Screen
+        name="Start"
+        component={StartScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="Gallery" component={GalleryScreen} />
       <Stack.Screen name="Gnom" component={GnomScreen} />
