@@ -1,17 +1,9 @@
 import React from "react";
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import MainButton from "../components/MainButtons";
 import { useSignup } from "../hooks/useSignup";
 
 const LoginScreen = ({ navigation }) => {
-  let ButtonComponent = TouchableOpacity;
   const [mail, setMail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [displayName, setDisplayName] = React.useState("");

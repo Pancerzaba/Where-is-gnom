@@ -27,8 +27,6 @@ export const useSignup = () => {
         throw new Error("Could not complete signup");
       }
 
-      console.log("res:", res);
-
       // create a user document
       await projectFirestore.collection("users").doc(res.user.uid).set({
         displayName,

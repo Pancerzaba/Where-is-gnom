@@ -17,6 +17,10 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RootNavigator } from "./navigation/RootNavigator";
 
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs(["Setting a timer"]);
+
 const rootReducer = combineReducers({
   gnoms: gnomsReducer,
 });
