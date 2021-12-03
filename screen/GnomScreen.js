@@ -1,23 +1,37 @@
-import React, { useState } from "react";
-// import {  useDispatch } from "react-redux";
-import {
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  ScrollView,
-  Button,
-} from "react-native";
+import React from "react";
+import { StyleSheet, Text, Image, View, ScrollView } from "react-native";
 import MainButton from "../components/MainButtons";
 import { useDocument } from "../hooks/useDocument";
+import { useFirestore } from "../hooks/useFirestore";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const GnomScreen = ({ route, navigation }) => {
-  const [statusGnom, setStatusGnom] = useState("Dodaj");
+  const [statusGnom, setStatusGnom] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+  const [founded, setFounded] = React.useState(false);
+  const [addGnomes, setAddGnomes] = React.useState([]);
+
   const { gnomId } = route.params;
+  const { user } = useAuthContext();
 
   const { document, error } = useDocument("gnomes", gnomId);
+  const { document: userDocument, error: userError } = useDocument(
+    "users",
+    user.uid
+  );
+  const { updateDocument, response } = useFirestore("users");
 
-  //   const dispatch = useDispatch();
+  const gnomExist = userDocument?.gnomesId.some((id) => id === gnomId);
+
+  const handleGnomes = async () => {
+    if (gnomExist) {
+      return;
+    }
+    setAddGnomes(gnomId);
+    await updateDocument(userDocument.id, {
+      gnomesId: [...userDocument.gnomesId, addGnomes],
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -43,9 +57,11 @@ const GnomScreen = ({ route, navigation }) => {
               >
                 Naviguj
               </MainButton>
-              <MainButton onPress={() => setStatusGnom("Znaleziony")}>
-                {statusGnom}
-              </MainButton>
+              {gnomExist ? (
+                <MainButton founded={gnomExist}>Dodany</MainButton>
+              ) : (
+                <MainButton onPress={handleGnomes}>Dodaj</MainButton>
+              )}
             </View>
           </View>
         </ScrollView>

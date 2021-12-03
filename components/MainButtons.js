@@ -18,7 +18,7 @@ const MainButton = (props) => {
   return (
     <View style={styles.buttonContainer}>
       <ButtonComponent activeOpacity={0.6} onPress={props.onPress}>
-        <View style={styles.button}>
+        <View style={props.founded ? styles.founded : styles.button}>
           <Text style={styles.buttonText}>{props.children}</Text>
         </View>
       </ButtonComponent>
@@ -29,6 +29,11 @@ const MainButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "rgba(80,160,255,0.9)",
+    margin: 3,
+    alignItems: "center",
+  },
+  founded: {
+    backgroundColor: "rgba(0,0,0,0.4)",
     margin: 3,
     alignItems: "center",
   },
