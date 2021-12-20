@@ -18,13 +18,13 @@ const SearchScreen = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
+      {/* <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           onChangeText={(text) => onChangeText(text)}
           value={value}
         />
-      </View>
+      </View> */}
 
       {/* <View style={styles.buttons}>
                 <MainButton>Dzielnice</MainButton>

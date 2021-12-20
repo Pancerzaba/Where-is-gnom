@@ -16,7 +16,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <Text>Zarejestruj sie cipo</Text>
+        <Text>Zarejestruj sie</Text>
         {/* TODO: dodać walidację; haslo musi miec 6 znaków */}
         <TextInput
           style={styles.input}
@@ -29,13 +29,13 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={(text) => setPassword(text)}
           value={password}
           secureTextEntry
-          placeholder="Hasło"
+          placeholder="Hasło (musi mieć długość 6 znaków)"
         />
         <TextInput
           style={styles.input}
           onChangeText={(text) => setDisplayName(text)}
           value={displayName}
-          placeholder="Ksywka"
+          placeholder="Nick"
         />
         <MainButton onPress={handleSignup}>Zarejestruj</MainButton>
       </View>

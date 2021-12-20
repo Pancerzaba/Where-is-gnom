@@ -15,7 +15,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <Text>Zaloguj sie cipo</Text>
+        <Text>Zaloguj sie </Text>
         {/* TODO: dodać walidację */}
         <TextInput
           style={styles.input}
