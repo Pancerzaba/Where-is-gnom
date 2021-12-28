@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "white",
     height: 300,
+    width: 300,
     margin: 20,
   },
   imageContainer: {

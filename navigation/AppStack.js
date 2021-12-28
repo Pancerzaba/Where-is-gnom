@@ -12,17 +12,39 @@ const Stack = createNativeStackNavigator();
 
 export const AppStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "rgba(80,160,255,0.9)" },
+      }}
+    >
       <Stack.Screen
         name="Start"
         component={StartScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Search" component={SearchScreen} />
-      <Stack.Screen name="Gallery" component={GalleryScreen} />
-      <Stack.Screen name="Gnom" component={GnomScreen} />
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ title: "Szukaj" }}
+      />
+      <Stack.Screen
+        name="Gallery"
+        component={GalleryScreen}
+        options={{
+          title: "Galeria Krasnali",
+        }}
+      />
+      <Stack.Screen
+        name="Gnom"
+        component={GnomScreen}
+        options={{ title: "Krasnal" }}
+      />
       <Stack.Screen name="Nawiguj" component={NawigateScreen} />
-      <Stack.Screen name="AddGnome" component={AddGnomeScreen} />
+      <Stack.Screen
+        name="AddGnome"
+        component={AddGnomeScreen}
+        options={{ title: "Dodaj Krasnala" }}
+      />
     </Stack.Navigator>
   );
 };

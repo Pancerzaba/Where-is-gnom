@@ -28,6 +28,29 @@ const GalleryScreen = (props) => {
                 <MainButton>Nie Zebrane</MainButton>
             </View> */}
       <View style={styles.fotos}>
+        <ScrollView style={styles.fotos}>
+          {documents &&
+            documents.map((item) => (
+              <>
+                <ButtonComponent
+                  onPress={() => {
+                    props.navigation.navigate("Gnom", {
+                      gnomId: item.id,
+                      productTitle: item.title,
+                    });
+                  }}
+                >
+                  <GnomItem
+                    style={styles.item}
+                    image={item.imageURL}
+                    title={item.title}
+                  />
+                </ButtonComponent>
+              </>
+            ))}
+        </ScrollView>
+      </View>
+      {/* <View style={styles.fotos}>
         {documents && (
           <FlatList
             data={documents}
@@ -49,7 +72,7 @@ const GalleryScreen = (props) => {
             )}
           />
         )}
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -65,25 +88,28 @@ export default GalleryScreen;
 const styles = StyleSheet.create({
   container: {
     display: "flex",
+    flex: 1,
     flexDirection: "column",
-    //height: '100%',
-    //width: '100%',
+
     justifyContent: "space-evenly",
     flexWrap: "wrap",
     //backgroundColor:'green',
     alignItems: "center",
+    backgroundColor: "rgba(0,0,120,0.2)",
     // alignItems: 'center'
   },
+
   title: {
     fontSize: 20,
     //fontWeight: 'bold',
     textAlign: "center",
-    backgroundColor: "#452187",
+    // backgroundColor: "#452187",
     color: "white",
     padding: "10px",
     //borderRadius: 25,
     margin: 10,
   },
+  item: { display: "flex", flex: 1 },
   buttons: {
     //display: "flex",
     // alignItems: 'center',
@@ -95,15 +121,18 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   foto: {
-    width: 150,
+    // width: "100%",
+    display: "flex",
     margin: 10,
     flex: 1,
-    display: "flex",
   },
   fotos: {
     display: "flex",
     flex: 1,
-    flexDirection: "row",
+    width: "100%",
+    // alignItems: "center",
+    // backgroundColor: "red",
+    flexDirection: "column",
     flexWrap: "wrap",
   },
 });

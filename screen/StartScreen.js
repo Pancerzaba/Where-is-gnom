@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
-    height: 100,
+    height: "100%",
     backgroundColor: "rgba(10,10,10,0.6)",
     alignItems: "center",
     justifyContent: "flex-end",
