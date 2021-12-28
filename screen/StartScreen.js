@@ -38,6 +38,13 @@ const StartScreen = (props) => {
             >
               Galeria krasnali
             </MyButton>
+            <MyButton
+              onPress={() => {
+                props.navigation.navigate("AddGnome");
+              }}
+            >
+              Dodaj krasnala
+            </MyButton>
             <MyButton onPress={handleLogout}>Wyloguj</MyButton>
           </View>
         </View>

@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StartScreen from "../screen/StartScreen";
 
+import AddGnomeScreen from "../screen/AddGnomeScreen";
 import GnomScreen from "../screen/GnomScreen";
 import SearchScreen from "../screen/SearchScreen";
 import GalleryScreen from "../screen/GalleryScreen";
@@ -21,6 +22,7 @@ export const AppStack = () => {
       <Stack.Screen name="Gallery" component={GalleryScreen} />
       <Stack.Screen name="Gnom" component={GnomScreen} />
       <Stack.Screen name="Nawiguj" component={NawigateScreen} />
+      <Stack.Screen name="AddGnome" component={AddGnomeScreen} />
     </Stack.Navigator>
   );
 };
