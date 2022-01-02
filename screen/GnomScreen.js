@@ -1,25 +1,85 @@
 import React from "react";
-import { StyleSheet, Text, Image, View, ScrollView } from "react-native";
+import { StyleSheet, Text, Image, View, ScrollView, Alert } from "react-native";
 import MainButton from "../components/MainButtons";
 import { useDocument } from "../hooks/useDocument";
 import { useFirestore } from "../hooks/useFirestore";
 import { useAuthContext } from "../hooks/useAuthContext";
+import * as Location from "expo-location";
 
 const GnomScreen = ({ route, navigation }) => {
   const { gnomId } = route.params;
   const { user } = useAuthContext();
-
   const { document, error } = useDocument("gnomes", gnomId);
   const { document: userDocument, error: userError } = useDocument(
     "users",
     user.uid
   );
-  const { updateDocument, response } = useFirestore("users");
+  const [userLat, setUserLat] = React.useState(null);
+  const [userLng, setUserLng] = React.useState(null);
+  const [location, setLocation] = React.useState(null);
 
+  const getDistance = (x1, x2, y1, y2) => {
+    console.log(x1, x2, y1, y2);
+    let result =
+      Math.sqrt(
+        Math.pow(x2 - x1, 2) +
+          Math.pow(Math.cos((x1 * Math.PI) / 180) * (y2 - y1), 2)
+      ) *
+      (40075.704 / 360) *
+      1000;
+    // console.log(result, "jjjjjjjjjjjjjj");
+    return result;
+  };
+  const showAlert = () =>
+    Alert.alert(
+      "Nie można dodać kasnala do odwiedzonych",
+      "Krasnal znajduję się zbyt daleko by go dodać"
+    );
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+  };
+
+  React.useEffect(() => {
+    getLocation();
+  }, []);
+  React.useEffect(() => {
+    location &&
+      (setUserLat(location.coords.latitude),
+      setUserLng(location.coords.longitude));
+  }, [location]);
+  // console.log("lokalizacja", location, "userLat ", userLat);
+  const { updateDocument, response } = useFirestore("users");
+  // const x1 = 54.366667;
+  // const y1 = 18.633333;
+  // const x2 = 54.466667;
+  // const y2 = 17.016667;
   const handleGnomes = async () => {
-    await updateDocument(userDocument.id, {
-      gnomesId: [...userDocument.gnomesId, gnomId],
-    });
+    // console.log(
+    //   userLng,
+    //   document.lng,
+    //   userLat,
+    //   document.lat,
+    //   // document
+    //   getDistance(userLng, document.lng, userLat, document.lat)
+    // );
+    if (getDistance(userLng, document.lng, userLat, document.lat) < 100) {
+      await updateDocument(userDocument.id, {
+        gnomesId: [...userDocument.gnomesId, gnomId],
+      });
+    } else {
+      showAlert();
+      console.log(
+        "za daleko",
+        getDistance(userLng, document.lng, userLat, document.lat)
+      );
+    }
   };
 
   const checkIfGnomExist = () => {
@@ -69,7 +129,7 @@ const GnomScreen = ({ route, navigation }) => {
               {checkIfGnomExist() ? (
                 <MainButton founded={true}>Dodany</MainButton>
               ) : (
-                <MainButton onPress={handleGnomes}>Dodaj</MainButton>
+                <MainButton onPress={showAlert}>Dodaj</MainButton>
               )}
             </View>
           </View>
