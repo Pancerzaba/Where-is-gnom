@@ -32,6 +32,7 @@ const GalleryScreen = (props) => {
                   }}
                 >
                   <GnomItem
+                    key={item.id}
                     style={styles.item}
                     image={item.imageURL}
                     title={item.title}
