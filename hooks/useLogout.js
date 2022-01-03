@@ -1,5 +1,6 @@
 import React from "react";
-import { projectAuth, projectFirestore } from "../config/firebase";
+import { projectAuth } from "../config/firebase";
+import { signOut } from "firebase/auth";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogout = () => {
@@ -19,7 +20,7 @@ export const useLogout = () => {
       //   .doc(uid)
       //   .update({ online: false });
 
-      await projectAuth.signOut();
+      await signOut(projectAuth);
 
       dispatch({ type: "LOGOUT" });
 

@@ -1,5 +1,7 @@
 import React from "react";
-import { projectAuth, projectFirestore } from "../config/firebase";
+import { projectAuth } from "../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {
@@ -14,7 +16,11 @@ export const useLogin = () => {
 
     try {
       // login
-      const res = await projectAuth.signInWithEmailAndPassword(email, password);
+      const res = await signInWithEmailAndPassword(
+        projectAuth,
+        email,
+        password
+      );
 
       // update online status
       //   const documentRef = projectFirestore

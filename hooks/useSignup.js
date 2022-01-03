@@ -5,6 +5,9 @@ import {
   projectFirestore,
 } from "../config/firebase";
 import { useAuthContext } from "./useAuthContext";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = React.useState(false);
@@ -18,7 +21,8 @@ export const useSignup = () => {
     setIsPending(true);
 
     try {
-      const res = await projectAuth.createUserWithEmailAndPassword(
+      const res = await createUserWithEmailAndPassword(
+        projectAuth,
         email,
         password
       );
@@ -28,10 +32,9 @@ export const useSignup = () => {
       }
 
       // create a user document
-      await projectFirestore.collection("users").doc(res.user.uid).set({
-        displayName,
-        gnomesId,
-      });
+
+      const userRef = doc(projectFirestore, "users", res.user.uid);
+      await setDoc(userRef, { displayName, gnomesId });
 
       // dispatch login action
       dispatch({ type: "LOGIN", payload: res.user });

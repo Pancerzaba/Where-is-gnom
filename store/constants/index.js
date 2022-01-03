@@ -1,2 +1,0 @@
-export const FETCH_GNOMES = 'FETCH_GNOMES'
-export const FETCH_GNOME = 'FETCH_GNOME'

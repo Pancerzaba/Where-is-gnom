@@ -5,13 +5,9 @@ import { StyleSheet, Text, View, Button } from "react-native";
 //import MapView from 'react-native-maps'
 import GnomScreen from "./screen/GnomScreen";
 import GnomsNavigator from "./navigation/GnomsNavigation";
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import { Provider } from "react-redux";
 
-import gnomsReducer from "./store/reducers/gnoms";
 import GalleryScreen from "./screen/GalleryScreen";
 
-import thunk from "redux-thunk";
 import { AuthContextProvider } from "./context/AuthContext";
 
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -21,18 +17,8 @@ import { LogBox } from "react-native";
 
 LogBox.ignoreLogs(["Setting a timer"]);
 
-const rootReducer = combineReducers({
-  gnoms: gnomsReducer,
-});
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
 export default function App() {
   return (
-    // <Provider store={store}>
-    //       <GnomsNavigator/>
-
-    // </Provider>
     <AuthContextProvider>
       <SafeAreaProvider>
         <RootNavigator />

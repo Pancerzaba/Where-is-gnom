@@ -1,8 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import MainButton from "../components/MainButtons";
-import { fetchGnomes } from "../store/actions/Gnom";
 
 import GnomItem from "../components/GnomItem";
 import { useCollection } from "../hooks/useCollection";
