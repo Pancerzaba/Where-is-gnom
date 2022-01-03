@@ -59,6 +59,7 @@ const NawigateScreen = ({ navigation, route }) => {
 
       {document && location && (
         <MapView
+          showsUserLocation
           style={styles.map}
           initialRegion={{
             latitude: location.coords.latitude,
