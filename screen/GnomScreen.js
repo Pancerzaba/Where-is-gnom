@@ -18,6 +18,8 @@ const GnomScreen = ({ route, navigation }) => {
   const [userLng, setUserLng] = React.useState(null);
   const [location, setLocation] = React.useState(null);
 
+  const { updateDocument, response } = useFirestore("users");
+
   const getDistance = (x1, x2, y1, y2) => {
     console.log(x1, x2, y1, y2);
     let result =
@@ -27,7 +29,6 @@ const GnomScreen = ({ route, navigation }) => {
       ) *
       (40075.704 / 360) *
       1000;
-    // console.log(result, "jjjjjjjjjjjjjj");
     return result;
   };
   const showAlert = () =>
@@ -35,6 +36,7 @@ const GnomScreen = ({ route, navigation }) => {
       "Nie można dodać kasnala do odwiedzonych",
       "Krasnal znajduję się zbyt daleko by go dodać"
     );
+
   const getLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
@@ -49,26 +51,14 @@ const GnomScreen = ({ route, navigation }) => {
   React.useEffect(() => {
     getLocation();
   }, []);
+
   React.useEffect(() => {
     location &&
       (setUserLat(location.coords.latitude),
       setUserLng(location.coords.longitude));
   }, [location]);
-  // console.log("lokalizacja", location, "userLat ", userLat);
-  const { updateDocument, response } = useFirestore("users");
-  // const x1 = 54.366667;
-  // const y1 = 18.633333;
-  // const x2 = 54.466667;
-  // const y2 = 17.016667;
+
   const handleGnomes = async () => {
-    // console.log(
-    //   userLng,
-    //   document.lng,
-    //   userLat,
-    //   document.lat,
-    //   // document
-    //   getDistance(userLng, document.lng, userLat, document.lat)
-    // );
     if (getDistance(userLng, document.lng, userLat, document.lat) < 100) {
       await updateDocument(userDocument.id, {
         gnomesId: [...userDocument.gnomesId, gnomId],
@@ -129,7 +119,7 @@ const GnomScreen = ({ route, navigation }) => {
               {checkIfGnomExist() ? (
                 <MainButton founded={true}>Dodany</MainButton>
               ) : (
-                <MainButton onPress={showAlert}>Dodaj</MainButton>
+                <MainButton onPress={handleGnomes}>Dodaj</MainButton>
               )}
             </View>
           </View>

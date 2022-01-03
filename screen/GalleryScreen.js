@@ -1,14 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import MainButton from "../components/MainButtons";
 import { fetchGnomes } from "../store/actions/Gnom";
 
@@ -33,6 +25,7 @@ const GalleryScreen = (props) => {
             documents.map((item) => (
               <>
                 <ButtonComponent
+                  keyExtractor={item.id}
                   onPress={() => {
                     props.navigation.navigate("Gnom", {
                       gnomId: item.id,
