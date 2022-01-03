@@ -16,6 +16,7 @@ import { RootNavigator } from "./navigation/RootNavigator";
 import { LogBox } from "react-native";
 
 LogBox.ignoreLogs(["Setting a timer"]);
+LogBox.ignoreLogs(["AsyncStorage has been extracted from react-native core"]);
 
 export default function App() {
   return (
