@@ -1,8 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, Image, TextInput, View, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  Image,
+  TextInput,
+  View,
+  Alert,
+  Button,
+} from "react-native";
 import MainButton from "../components/MainButtons";
 import * as Location from "expo-location";
 import { useFirestore } from "../hooks/useFirestore";
+import * as ImagePicker from "expo-image-picker";
 
 const AddGnome = () => {
   const [title, setTitle] = React.useState("");
@@ -12,7 +21,7 @@ const AddGnome = () => {
   const [lng, setLng] = React.useState(null);
   const [imageURL, setImageURL] = React.useState();
   const [location, setLocation] = React.useState(null);
-
+  const [image, setImage] = React.useState(null);
   const { addDocument, response } = useFirestore("gnomes");
 
   const getLocation = async () => {
@@ -24,6 +33,26 @@ const AddGnome = () => {
 
     let location = await Location.getCurrentPositionAsync({});
     setLocation(location);
+  };
+
+  const openCamera = async () => {
+    // Ask the user for the permission to access the camera
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your camera!");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+      console.log(result.uri);
+    }
   };
 
   React.useEffect(() => {
@@ -59,7 +88,12 @@ const AddGnome = () => {
     <View style={styles.container}>
       <View style={styles.form}>
         {/* <Text>Dodaj gnoma</Text> */}
-        <MainButton onPress={() => {}}>Dodaj zdjęcie</MainButton>
+
+        {image && (
+          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+        )}
+        <MainButton onPress={openCamera}>Dodaj zdjęcie</MainButton>
+        {/* <MainButton onPress={() => {}}>Dodaj zdjęcie</MainButton> */}
         <TextInput
           style={styles.input}
           onChangeText={(text) => setTitle(text)}
