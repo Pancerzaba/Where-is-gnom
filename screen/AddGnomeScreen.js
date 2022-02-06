@@ -1,20 +1,12 @@
 import React from "react";
 import "react-native-get-random-values";
-import {
-  StyleSheet,
-  Text,
-  Image,
-  TextInput,
-  View,
-  Alert,
-  Button,
-} from "react-native";
+import { StyleSheet, Image, TextInput, View, Alert } from "react-native";
 import MainButton from "../components/MainButtons";
 import * as Location from "expo-location";
 import { useFirestore } from "../hooks/useFirestore";
 import * as ImagePicker from "expo-image-picker";
 import { projectStorage } from "../config/firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
 
 const AddGnome = () => {

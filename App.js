@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+// import { StatusBar } from "expo-status-bar";
 import React from "react";
 //import {applyMiddleware} from 'redux';
 import { StyleSheet, Text, View, Button } from "react-native";

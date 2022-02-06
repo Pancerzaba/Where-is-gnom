@@ -42,29 +42,6 @@ const GalleryScreen = (props) => {
             ))}
         </ScrollView>
       </View>
-      {/* <View style={styles.fotos}>
-        {documents && (
-          <FlatList
-            data={documents}
-            keyExtractor={(item) => item.id}
-            renderItem={(itemData) => (
-              <ButtonComponent
-                onPress={() => {
-                  props.navigation.navigate("Gnom", {
-                    gnomId: itemData.item.id,
-                    productTitle: itemData.item.title,
-                  });
-                }}
-              >
-                <GnomItem
-                  image={itemData.item.imageURL}
-                  title={itemData.item.title}
-                />
-              </ButtonComponent>
-            )}
-          />
-        )}
-      </View> */}
     </View>
   );
 };
