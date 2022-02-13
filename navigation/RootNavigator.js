@@ -8,10 +8,6 @@ import { useAuthContext } from "../hooks/useAuthContext";
 export const RootNavigator = () => {
   const { user, authIsReady } = useAuthContext();
 
-  //   if (isLoading) {
-  //     return <LoadingIndicator />;
-  //   }
-
   return (
     <>
       {authIsReady && (

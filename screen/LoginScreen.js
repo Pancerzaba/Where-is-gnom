@@ -47,13 +47,7 @@ const LoginScreen = ({ navigation }) => {
 };
 
 export default LoginScreen;
-LoginScreen.navigationOptions = {
-  headerTitle: "Login ",
-  headerStyle: {
-    backgroundColor: "#452187",
-  },
-  headerTintColor: "white",
-};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -68,7 +62,7 @@ const styles = StyleSheet.create({
     height: "80%",
     paddingHorizontal: 10,
     paddingVertical: 20,
-    backgroundColor: "grey",
+    // backgroundColor: "grey",
   },
   input: {
     width: "100%",

@@ -129,13 +129,6 @@ const GnomScreen = ({ route, navigation }) => {
   );
 };
 
-GnomScreen.navigationOptions = {
-  headerTitle: "Krasnal ",
-  headerStyle: {
-    backgroundColor: "#452187",
-  },
-  headerTintColor: "white",
-};
 export default GnomScreen;
 
 const styles = StyleSheet.create({
@@ -160,14 +153,13 @@ const styles = StyleSheet.create({
     margin: 10,
     textAlign: "center",
     width: "95%",
-
     padding: 10,
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    backgroundColor: "#452187",
+    backgroundColor: "rgba(30,60,255,0.9)",
     color: "white",
     padding: 10,
     borderRadius: 2,
@@ -180,8 +172,6 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
     display: "flex",
-    //alignItems: 'center',
     margin: 10,
-    //  width: '45%'
   },
 });

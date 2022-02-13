@@ -116,8 +116,6 @@ const AddGnome = () => {
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        {/* <Text>Dodaj gnoma</Text> */}
-
         {imageURL && (
           <Image
             source={{ uri: imageURL }}
@@ -125,7 +123,6 @@ const AddGnome = () => {
           />
         )}
         <MainButton onPress={openCamera}>Dodaj zdjęcie</MainButton>
-        {/* <MainButton onPress={() => {}}>Dodaj zdjęcie</MainButton> */}
         <TextInput
           style={styles.input}
           onChangeText={(text) => setTitle(text)}
@@ -155,7 +152,6 @@ export default AddGnome;
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: "red",
     width: "100%",
     height: "100%",
   },

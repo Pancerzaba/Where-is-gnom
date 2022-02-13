@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  ImageBackground,
-  Text,
-  View,
-  Image,
-  Button,
-} from "react-native";
+import { StyleSheet, ImageBackground, View } from "react-native";
 import MyButton from "../components/MainButtons";
 import { useLogout } from "../hooks/useLogout";
 
@@ -52,13 +45,7 @@ const StartScreen = (props) => {
     </View>
   );
 };
-StartScreen.navigationOptions = {
-  headerTitle: " ",
-  headerStyle: {
-    backgroundColor: "#452187",
-  },
-  headerTintColor: "white",
-};
+
 export default StartScreen;
 
 const styles = StyleSheet.create({
@@ -75,9 +62,5 @@ const styles = StyleSheet.create({
 
   buttons: {
     height: "40%",
-    // flexDirection: "column",
-    // justifyContent: "space-between",
-
-    // backgroundColor: "rgba(10,10,10,0.6)",
   },
 });

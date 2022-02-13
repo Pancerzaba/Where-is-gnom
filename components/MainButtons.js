@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     borderRadius: 5,
-    // overflow: "hidden",
     padding: 5,
     alignItems: "center",
   },
@@ -47,10 +46,8 @@ const styles = StyleSheet.create({
     display: "flex",
     margin: 5,
     color: "white",
-
     fontSize: 20,
     textAlign: "center",
-    // marginVertical: 10,
     padding: 5,
   },
 });

@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
-import MainButton from "../components/MainButtons";
 
 import GnomItem from "../components/GnomItem";
 import { useCollection } from "../hooks/useCollection";
@@ -12,16 +11,11 @@ const GalleryScreen = (props) => {
 
   return (
     <View style={styles.container}>
-      {/* <View style={styles.buttons}>
-                <MainButton>Wszystkie</MainButton>
-                <MainButton>Zebrane</MainButton>
-                <MainButton>Nie Zebrane</MainButton>
-            </View> */}
-      <View style={styles.fotos}>
+      <View style={styles.container2}>
         <ScrollView style={styles.fotos}>
           {documents &&
             documents.map((item) => (
-              <>
+              <View key={item.id} style={styles.container2}>
                 <ButtonComponent
                   keyExtractor={item.id}
                   onPress={() => {
@@ -38,20 +32,14 @@ const GalleryScreen = (props) => {
                     title={item.title}
                   />
                 </ButtonComponent>
-              </>
+              </View>
             ))}
         </ScrollView>
       </View>
     </View>
   );
 };
-GalleryScreen.navigationOptions = {
-  headerTitle: "Gallery ",
-  headerStyle: {
-    backgroundColor: "#452187",
-  },
-  headerTintColor: "white",
-};
+
 export default GalleryScreen;
 
 const styles = StyleSheet.create({
@@ -59,48 +47,31 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     flexDirection: "column",
-
-    justifyContent: "space-evenly",
-    flexWrap: "wrap",
-    //backgroundColor:'green',
+    width: "100%",
+    justifyContent: "center",
+    flexWrap: "nowrap",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,120,0.2)",
-    // alignItems: 'center'
   },
-
+  container2: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   title: {
     fontSize: 20,
-    //fontWeight: 'bold',
     textAlign: "center",
-    // backgroundColor: "#452187",
     color: "white",
     padding: "10px",
-    //borderRadius: 25,
     margin: 10,
   },
   item: { display: "flex", flex: 1 },
-  buttons: {
-    //display: "flex",
-    // alignItems: 'center',
-    // backgroundColor: 'red',
-    alignItems: "center",
-    flexDirection: "row",
-    width: 320,
-    height: 100,
-    margin: 10,
-  },
-  foto: {
-    // width: "100%",
-    display: "flex",
-    margin: 10,
-    flex: 1,
-  },
+
   fotos: {
     display: "flex",
     flex: 1,
     width: "100%",
-    // alignItems: "center",
-    // backgroundColor: "red",
     flexDirection: "column",
     flexWrap: "wrap",
   },
