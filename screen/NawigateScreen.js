@@ -6,7 +6,7 @@ import MapView from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { Marker } from "react-native-maps";
 import { useDocument } from "../hooks/useDocument";
-import ENV from "../env";
+import { GOOGLE_MAPS_APIKEY } from "react-native-dotenv";
 
 const NawigateScreen = ({ route }) => {
   const { gnomId } = route.params;
@@ -62,7 +62,7 @@ const NawigateScreen = ({ route }) => {
               longitude: location.coords.longitude,
             }}
             destination={{ latitude: document.lat, longitude: document.lng }}
-            apikey={ENV.GOOGLE_MAPS_APIKEY}
+            apikey={GOOGLE_MAPS_APIKEY}
             strokeWidth={2}
             strokeColor="red"
             lineDashPattern={[1]}

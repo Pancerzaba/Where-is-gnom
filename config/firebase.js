@@ -3,17 +3,26 @@ import { getFirestore, Timestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
-import ENV from "../env";
+import {
+  API_KEY,
+  AUTH_DOMAIN,
+  DATABASE_URL,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  APP_ID,
+  MEASUREMENT_ID,
+} from "react-native-dotenv";
 
 const firebaseConfig = {
-  apiKey: ENV.API_KEY,
-  authDomain: ENV.AUTH_DOMAIN,
-  databaseURL: ENV.DATABASE_URL,
-  projectId: ENV.PROJECT_ID,
-  storageBucket: ENV.STORAGE_BUCKET,
-  messagingSenderId: ENV.MESSAGING_SENDER_ID,
-  appId: ENV.APP_ID,
-  measurementId: ENV.MEASUREMENT_ID,
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  databaseURL: DATABASE_URL,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASUREMENT_ID,
 };
 
 initializeApp(firebaseConfig);
